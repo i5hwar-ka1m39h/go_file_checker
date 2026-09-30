@@ -112,15 +112,15 @@ func DirSize(path string) (int64, error) {
 				max2 = max1
 				maxfile2 = maxfile1
 				max1 = each_size
-				maxfile1 = info.Name()
+				maxfile1 = path
 			} else if each_size > max2 {
 				max3 = max2
 				maxfile3 = maxfile2
 				max2 = each_size
-				maxfile2 = info.Name()
-			} else {
+				maxfile2 = path
+			} else if each_size > max3 {
 				max3 = each_size
-				maxfile3 = info.Name()
+				maxfile3 = path
 			}
 
 			size += info.Size()
@@ -129,7 +129,7 @@ func DirSize(path string) (int64, error) {
 	})
 
 	fmt.Println("the largest files are")
-	fmt.Println("Name   Size")
+	fmt.Println("Name\tSize")
 	fmt.Printf("%s\t%d\n", maxfile1, max1)
 	fmt.Printf("%s\t%d\n", maxfile2, max2)
 	fmt.Printf("%s\t%d\n", maxfile3, max3)
